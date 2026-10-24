@@ -1,5 +1,5 @@
 -- ========================================================
--- 👑 OG HUB V7.0 — GOLDEN CROWN EDITION 🌟👑
+-- 👑 OG HUB V7.0 — OPTIMIZED GOLDEN CROWN EDITION 🌟👑
 -- ========================================================
 
 if getgenv().OGHubCleanup then
@@ -416,7 +416,7 @@ local InfoLabel = Instance.new("TextLabel")
 InfoLabel.Size = UDim2.new(1, -20, 1, -20)
 InfoLabel.Position = UDim2.new(0, 10, 0, 10)
 InfoLabel.BackgroundTransparency = 1
-InfoLabel.Text = "👑 OG HUB — GOLDEN CROWN EDITION\n\nOwner: Hack_aas1\nUser: " .. LocalPlayer.Name .. "\nEngine: OG Crown Engine V7.0\nStatus: Pure Supremacy"
+InfoLabel.Text = "👑 OG HUB — GOLDEN CROWN EDITION\n\nOwner: Hack_aas1\nUser: " .. LocalPlayer.Name .. "\nEngine: OG Crown Engine V7.0 (Optimized)\nStatus: Pure Supremacy"
 InfoLabel.TextColor3 = Color3.fromRGB(255, 220, 150)
 InfoLabel.Font = Enum.Font.GothamMedium
 InfoLabel.TextSize = 12
@@ -548,7 +548,7 @@ addButton(MainPage, "👑 INSTANT KILL ALL (SINGLE PULSE)", function(btn)
         local remote = tool:FindFirstChild("InflictTarget", true) or ReplicatedStorage:FindFirstChild("InflictTarget", true)
         if remote then
             local count = 0
-            for _, obj in ipairs(Workspace:GetDescendants()) do
+            for _, obj in ipairs(Workspace:GetChildren()) do
                 if obj:IsA("Model") and obj ~= char then
                     local hum = obj:FindFirstChildOfClass("Humanoid")
                     local part = obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChild("Head") or obj:FindFirstChildWhichIsA("BasePart")
@@ -601,12 +601,12 @@ Tasks.LuckTask = task.spawn(function()
                 LocalPlayer:SetAttribute("LuckMultiplier", activeLuck)
             end
         end)
-        task.wait(0.5)
+        task.wait(1.0)
     end
 end)
 
 --------------------------------------------------------------------------------
--- DOOMSDAY AUTO-KILL LOOP
+-- OPTIMIZED 25/SEC AUTO-KILL LOOP
 --------------------------------------------------------------------------------
 local autoKillActive = false
 addToggle(MainPage, "👑 25/SEC OG LOOP", false, function(state)
@@ -623,7 +623,7 @@ task.spawn(function()
             if tool then cachedRemote = tool:FindFirstChild("InflictTarget", true) or ReplicatedStorage:FindFirstChild("InflictTarget", true) end
             
             local newTargets = {}
-            for _, obj in ipairs(Workspace:GetDescendants()) do
+            for _, obj in ipairs(Workspace:GetChildren()) do
                 if obj:IsA("Model") and obj ~= char then
                     local hum = obj:FindFirstChildOfClass("Humanoid")
                     local part = obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChild("Head") or obj:FindFirstChildWhichIsA("BasePart")
@@ -633,11 +633,11 @@ task.spawn(function()
                 end
             end
             cachedTargets = newTargets
-            task.wait(0.2)
+            task.wait(0.5)
         else
             cachedTargets = {}
             cachedRemote = nil
-            task.wait(0.5)
+            task.wait(1.0)
         end
     end
 end)
@@ -668,7 +668,7 @@ end)
 
 Tasks.CelciusLoop = task.spawn(function()
     while true do
-        task.wait(0.2)
+        task.wait(0.5)
         if celciusActive then
             pcall(function()
                 local rakoofVals = Workspace:FindFirstChild("RakoofVals", true) or ReplicatedStorage:FindFirstChild("RakoofVals", true) or game:GetService("StarterGui"):FindFirstChild("RakoofVals", true)
@@ -700,7 +700,7 @@ Tasks.CelciusLoop = task.spawn(function()
 end)
 
 --------------------------------------------------------------------------------
--- 4. AUTO TAB CONTENT (INCLUDES AUTO PICK-UP DROPS)
+-- 4. AUTO TAB CONTENT (OPTIMIZED AUTO PICK-UP & BYPASS)
 --------------------------------------------------------------------------------
 local autoPickupActive = false
 addToggle(AutoPage, "🌀 AUTO PICK-UP (DROPS)", false, function(state)
@@ -715,9 +715,11 @@ Tasks.AutoPickupTask = task.spawn(function()
                 local hrp = char and char:FindFirstChild("HumanoidRootPart")
                 if hrp then
                     local dropsFolder = Workspace:FindFirstChild("Drops") or Workspace:FindFirstChild("drops") or Workspace
-                    for _, obj in ipairs(dropsFolder:GetDescendants()) do
+                    local itemsToScan = dropsFolder and dropsFolder:GetChildren() or Workspace:GetChildren()
+                    
+                    for _, obj in ipairs(itemsToScan) do
                         if not autoPickupActive then break end
-                        if obj.Name:lower():find("drop") or obj.Parent.Name:lower():find("drop") then
+                        if obj.Name:lower():find("drop") or obj.Name:lower():find("scrap") or obj.Name:lower():find("item") then
                             if obj:IsA("BasePart") then
                                 if typeof(firetouchinterest) == "function" then
                                     firetouchinterest(hrp, obj, 0)
@@ -732,7 +734,7 @@ Tasks.AutoPickupTask = task.spawn(function()
                     end
                 end
             end)
-            task.wait(0.05)
+            task.wait(0.2)
         else
             task.wait(0.5)
         end
@@ -741,12 +743,11 @@ end)
 
 Tasks.AutoFalseLoop = task.spawn(function()
     while true do
-        task.wait(0.1)
+        task.wait(0.5)
         pcall(function()
             local targetsToDisable = { ["LamentUsed"] = true, ["EerieUsed"] = true, ["Immunity"] = true }
-            for _, obj in ipairs(Workspace:GetDescendants()) do if targetsToDisable[obj.Name] and obj:IsA("BoolValue") and obj.Value == true then obj.Value = false end end
-            for _, obj in ipairs(ReplicatedStorage:GetDescendants()) do if targetsToDisable[obj.Name] and obj:IsA("BoolValue") and obj.Value == true then obj.Value = false end end
-            for _, obj in ipairs(game:GetService("StarterGui"):GetDescendants()) do if targetsToDisable[obj.Name] and obj:IsA("BoolValue") and obj.Value == true then obj.Value = false end end
+            for _, obj in ipairs(Workspace:GetChildren()) do if targetsToDisable[obj.Name] and obj:IsA("BoolValue") and obj.Value == true then obj.Value = false end end
+            for _, obj in ipairs(ReplicatedStorage:GetChildren()) do if targetsToDisable[obj.Name] and obj:IsA("BoolValue") and obj.Value == true then obj.Value = false end end
         end)
     end
 end)
@@ -758,7 +759,7 @@ end)
 
 Tasks.CooldownBypassLoop = task.spawn(function()
     while true do
-        task.wait(0.1)
+        task.wait(0.2)
         if cooldownBypassActive then
             pcall(function()
                 local function checkItem(item)
@@ -800,13 +801,13 @@ end)
 
 Tasks.CandyLoop = task.spawn(function()
     while true do
-        task.wait(0.2)
+        task.wait(0.3)
         if candyActive then
             pcall(function()
                 local char = LocalPlayer.Character
                 local hrp = char and char:FindFirstChild("HumanoidRootPart")
                 if hrp then
-                    for _, obj in ipairs(Workspace:GetDescendants()) do
+                    for _, obj in ipairs(Workspace:GetChildren()) do
                         if (obj:IsA("Tool") or obj:IsA("BasePart") or obj:IsA("Model")) and obj.Name:lower():find("candy") then
                             local touchPart = obj:IsA("BasePart") and obj or obj:FindFirstChild("Handle") or obj:FindFirstChildWhichIsA("BasePart")
                             if touchPart then
@@ -833,7 +834,7 @@ addButton(AutoPage, "🪙 BRING OOFCOINS TO ME", function(btn)
         local coinsFolder = Workspace:FindFirstChild("Coins") or Workspace:FindFirstChild("Coins", true)
         local broughtCount = 0
         if coinsFolder then
-            for _, coin in ipairs(coinsFolder:GetDescendants()) do
+            for _, coin in ipairs(coinsFolder:GetChildren()) do
                 if coin.Name:lower():find("oofcoin") or coin.Name:lower():find("coin") then
                     local targetPart = coin:IsA("BasePart") and coin or coin:FindFirstChildWhichIsA("BasePart") or coin:FindFirstChild("Handle")
                     if targetPart then
@@ -955,7 +956,7 @@ addToggle(PlayerPage, "👑 OG HUB ESP HIGHLIGHT", false, function(state)
     espActive = state
     if not state then
         for _, p in pairs(Players:GetPlayers()) do if p.Character and p.Character:FindFirstChild("OGEsp") then p.Character.OGEsp:Destroy() end end
-        for _, m in pairs(Workspace:GetDescendants()) do if m:IsA("Model") and (m.Name:lower():find("rake") or m.Name:lower():find("rakoof")) and m:FindFirstChild("OGEsp") then m.OGEsp:Destroy() end end
+        for _, m in pairs(Workspace:GetChildren()) do if m:IsA("Model") and (m.Name:lower():find("rake") or m.Name:lower():find("rakoof")) and m:FindFirstChild("OGEsp") then m.OGEsp:Destroy() end end
     end
 end)
 
@@ -970,7 +971,7 @@ Connections.EspLoop = RunService.Heartbeat:Connect(function()
                 hl.Parent = p.Character
             end
         end
-        for _, m in pairs(Workspace:GetDescendants()) do
+        for _, m in pairs(Workspace:GetChildren()) do
             if m:IsA("Model") and (m.Name:lower():find("rake") or m.Name:lower():find("rakoof")) and not m:FindFirstChild("OGEsp") then
                 local hl = Instance.new("Highlight")
                 hl.Name = "OGEsp"
