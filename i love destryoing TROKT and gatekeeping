@@ -1,8 +1,4 @@
 
--- ========================================================
--- 👑 OG HUB V7.0 — OPTIMIZED GOLDEN CROWN EDITION 🌟👑
--- ========================================================
-
 if getgenv().OGHubCleanup then
     pcall(getgenv().OGHubCleanup)
 end
